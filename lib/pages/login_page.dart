@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_touchscreen/models/user.dart';
 import 'package:flutter_touchscreen/pages/page_wrapper.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
@@ -21,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   void _authorizeUser() {
     // TODO: IMPLEMENT DATABASE CALL
 
+    User.loginUser(User(1, "monitorRaspPi", "123", "R"));
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const PageWrapper()),
@@ -32,10 +35,14 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         body: Stack(
       children: [
-        /*Image.asset(
-          "images/banner.png",
-          fit: BoxFit.fill,
-        ),*/
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Image.asset(
+            "assets/images/banner.png",
+            fit: BoxFit.cover,
+          ),
+        ),
         Center(
           child: GlassContainer(
             child: SizedBox(

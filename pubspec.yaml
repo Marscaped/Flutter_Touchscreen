@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   glassmorphism_ui: ^0.3.0
   loading_animation_widget: ^1.2.0+4
+  sliding_switch: ^1.1.0
+  # http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +65,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

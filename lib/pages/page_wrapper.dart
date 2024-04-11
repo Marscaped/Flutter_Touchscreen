@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_touchscreen/models/user.dart';
 import 'package:flutter_touchscreen/pages/tabs/components_page.dart';
 import 'package:flutter_touchscreen/pages/tabs/sensor_page.dart';
 
@@ -27,6 +28,13 @@ class _PageWrapperState extends State<PageWrapper> {
         key: _key,
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          /*
           actions: [
             IconButton(
               icon: Icon(Icons.menu),
@@ -35,20 +43,25 @@ class _PageWrapperState extends State<PageWrapper> {
               },
             )
           ],
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.info),
-                text: "Sensors",
-              ),
-              Tab(
-                icon: Icon(Icons.computer),
-                text: "Components",
-              ),
-            ],
-          ),
+         */
+          bottom: User.currentUser!.permissions.contains("W")
+              ? TabBar(tabs: [
+                  Tab(
+                    icon: Icon(Icons.developer_board),
+                    text: "Sensors",
+                  ),
+                  Tab(
+                    icon: Icon(Icons.memory),
+                    text: "Components",
+                  )
+                ])
+              : PreferredSize(
+                  child: SizedBox(
+                    height: 0,
+                  ),
+                  preferredSize: Size(MediaQuery.of(context).size.width, 0)),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             SensorPage(),
             ComponentsPage(),
@@ -61,7 +74,7 @@ class _PageWrapperState extends State<PageWrapper> {
                 title: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Use Dark-Mode:"),
+                    const Text("Use Dark-Mode:"),
                     Switch(value: true, onChanged: (value) {})
                   ],
                 ),
@@ -71,7 +84,7 @@ class _PageWrapperState extends State<PageWrapper> {
                       thickness: 2,
                       color: Colors.red[800],
                     )
-                  : SizedBox(
+                  : const SizedBox(
                       height: 0,
                     )
             ],
